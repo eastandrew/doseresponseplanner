@@ -23,3 +23,12 @@ points((c(2,0.2,0.02)),c(seq(0.8,1,length.out=3)), ylim=c(0,1),pch=NA,type="b")
 Add points as text of the exposure level:
 
 text((c(2,0.2,0.02)),c(seq(0.8,1,length.out=3)),c("2","0.2","0.02"))
+
+
+
+## Shiny App ##
+To run shiny app:
+
+`library(shiny)`
+
+`runGitHub("conceffectplan", "eastandrew")`
