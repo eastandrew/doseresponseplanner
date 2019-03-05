@@ -20,19 +20,17 @@ text((c(1.35,0.45,0.15,0.05)),c(seq(0.0,0.2,length.out=4)),c("1.35","0.45","0.15
 
 
 
+effectmag <- 0.95
 numtreats <- 4
-effectmag <- 0.2
-propdiffe <- exp(1)
-propdiff3 <- 3
-propdiff10 <- 10
-propdiff2 <- 2
 startinglow <- 0.05
+factorstart <- exp(1)
 
-plot(1,1,pch=NA, ylim=c(0,1),xlim=c(startinglow,startinglow*propdiff2^(numtreats-1)),xlab="log visualized conc",ylab="effect",log="x")
-points(c(startinglow,startinglow*propdiff2,startinglow*propdiff2^2,startinglow*propdiff2^3),
-       c(seq(1,1-effectmag,length.out=numtreats)),
-       pch=NA,
-       type="b")
-text(c(startinglow,startinglow*propdiff2,startinglow*propdiff2^2,startinglow*propdiff2^3),
-     c(seq(1,1-effectmag,length.out=numtreats)),
-     c(bquote(.(startinglow)),bquote(.(startinglow*propdiff2)),bquote(.(startinglow*propdiff2^2)),bquote(.(startinglow*propdiff2^3))))
+df <- data.frame(effmag=seq(1,1-effectmag,length.out=numtreats))
+df$treatstart <- startinglow
+df$factor <- factorstart
+df$ID <- as.numeric(row.names(df))-1
+df$treat <- df$treatstart*(df$factor^df$ID)
+#df
+plot(1,1,pch=NA, ylim=c(0,1),xlim=c(min(df$treat),max(df$treat)),xlab="log visualized conc",ylab="effect",log="x")
+points(effmag~treat, data=df, pch=NA, type="b")
+text(effmag~treat, data=df, bquote(.(round(df$treat,3))))
