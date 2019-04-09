@@ -1,28 +1,30 @@
 # Exposure Response Planning
-Plan arrangement of exposure levels based on log scale and XX% effect.
+Plan arrangement of exposure levels based on log scale.
 
 Easy way to visualize how exposure levels will arrange on a log scale.
 
-Replace X values with possible dose values, change % effect size if needed (currently at 20% decline divided by number of exposure levels) and then plot as many as required.
-
-Usually, linearity/consistent inter-level spacing is the goal.
+Two approaches:  
+* Use a starting and ending concentration and number of concentrations to plan log-scaled equidistant concentrations.
+* Use a starting concentration and constant multiplicative factor to create concentrations
 
 Code is in R script.
 
 
 
 ## Example of script ##
-Set up the plot itself.  Adjust xlim and ylim as needed:
 
-plot(1,1,pch=NA, ylim=c(0,1),xlim=c(0.01,2),xlab="log visualized conc",ylab="effect",log="x") 
-
-Add lines with breaks for points:
-
-points((c(2,0.2,0.02)),c(seq(0.8,1,length.out=3)), ylim=c(0,1),pch=NA,type="b")
-
-Add points as text of the exposure level:
-
-text((c(2,0.2,0.02)),c(seq(0.8,1,length.out=3)),c("2","0.2","0.02"))
+`numbertreats <- 5 #number of treatments
+starting <- 0.02 #starting concentration
+factorstart <- exp(1) #multiplicative factor
+ 
+df <- data.frame(effmag=seq(1,0,length.out=numbertreats))
+df$treatstart <- starting
+df$factor <- factorstart
+df$ID <- as.numeric(row.names(df))-1
+df$treat <- df$treatstart*(df$factor^df$ID)
+plot(1,1,pch=NA, ylim=c(0,1),xlim=c(min(df$treat),max(df$treat)),xlab="log visualized concentration",ylab="effect",log="x")
+points(effmag~treat, data=df, pch=NA, type="b")
+text(effmag~treat, data=df, bquote(.(round(df$treat,3))))`
 
 
 
@@ -31,4 +33,5 @@ To run shiny app:
 
 `library(shiny)`
 
-`runGitHub("conceffectplan", "eastandrew")`
+`runGitHub("doseresponseplan", "eastandrew")`
+
