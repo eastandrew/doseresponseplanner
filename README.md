@@ -7,8 +7,12 @@ Two approaches:
 * Use a starting and ending concentration and number of concentrations to plan log-scaled equidistant concentrations.
 * Use a starting concentration and constant multiplicative factor to create concentrations
 
-Code is in R script.
-`source(github.com/eastandrew/doseresponseplanning)`
+Code is in R script.  
+To source in R:  
+`library(Rcurl)`  
+`script <- getURL("https://raw.githubusercontent.com/eastandrew/doseresponseplanning/master/doserespplan.R", ssl.verifypeer=F)`
+`script`
+`eval(parse(text=script))`
 
 
 ## Shiny App ##
