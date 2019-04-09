@@ -16,13 +16,12 @@ Code is in R script.
 `numbertreats <- 5 #number of treatments  
 starting <- 0.02 #starting concentration  
 factorstart <- exp(1) #multiplicative factor  
-  
 df <- data.frame(effmag=seq(1,0,length.out=numbertreats))  
 df$treatstart <- starting  
 df$factor <- factorstart  
 df$ID <- as.numeric(row.names(df))-1  
 df$treat <- df$treatstart*(df$factor^df$ID)  
-plot(1,1,pch=NA, ylim=c(0,1),xlim=c(min(df$treat),max(df$treat)),xlab="log visualized concentration",ylab="effect",log="x")    
+plot(1,1,pch=NA, ylim=c(0,1),xlim=c(min(df$treat),max(df$treat)),xlab="log visualized concentration",ylab="effect",log="x")  
 points(effmag~treat, data=df, pch=NA, type="b")  
 text(effmag~treat, data=df, bquote(.(round(df$treat,3))))`  
 
