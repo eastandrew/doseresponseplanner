@@ -10,9 +10,9 @@ Two approaches:
 Code is in R script.  
 To source in R:  
 `library(Rcurl)`  
-`script <- getURL("https://raw.githubusercontent.com/eastandrew/doseresponseplanning/master/doserespplan.R", ssl.verifypeer=F)`
-`script`
-`eval(parse(text=script))`
+`script <- getURL("https://raw.githubusercontent.com/eastandrew/doseresponseplanning/master/doserespplan.R", ssl.verifypeer=F)`  
+`script`  
+`eval(parse(text=script))`  
 
 
 ## Shiny App ##
