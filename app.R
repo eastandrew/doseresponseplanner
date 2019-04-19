@@ -63,6 +63,7 @@ server <- function(input, output) {
       df$ID <- as.numeric(row.names(df))-1
       df$treat <- df$treatstart*(df$factor^df$ID)
       #df
+      par(mai=c(1,1,0.1,0.1))
       plot(1,1,pch=NA, ylim=c(0,1),xlim=c(min(df$treat),max(df$treat)),xlab="log visualized concentration",ylab="effect",log="x")
       points(effmag~treat, data=df, pch=NA, type="b")
       text(effmag~treat, data=df, bquote(.(round(df$treat,3))))
