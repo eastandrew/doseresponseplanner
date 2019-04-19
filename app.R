@@ -47,8 +47,8 @@ server <- function(input, output) {
       vect[i] <- vect[i-1]*multiplier
     }
     #vect
-    par(mai=c(1,1,0.1,0.1))
-    plot(vect,c(seq(1,0,length.out=input$numT)), log="x", type="b", pch=NA, xlab="log visualized concentration", ylab="effect")
+    par(mai=c(1,1,0.1,0.1), lwd=2, font=2, font.lab=2, font.axis=2)
+    plot(vect,c(seq(1,0,length.out=input$numT)), log="x", type="b", pch=NA, xlab="Log Visualized Concentration", ylab="Effect")
     text(vect,c(seq(1,0,length.out=input$numT)),round(vect,3))
     text(vect[(length(vect)-1)], 0.8, bquote(paste("Factor: ",.(round(multiplier,3)))))
     text(vect[(length(vect)-1)], 0.7, "OECD max = 3.2")
@@ -63,7 +63,7 @@ server <- function(input, output) {
       df$ID <- as.numeric(row.names(df))-1
       df$treat <- df$treatstart*(df$factor^df$ID)
       #df
-      par(mai=c(1,1,0.1,0.1))
+      par(mai=c(1,1,0.1,0.1), lwd=2, font=2, font.lab=2, font.axis=2)
       plot(1,1,pch=NA, ylim=c(0,1),xlim=c(min(df$treat),max(df$treat)),xlab="log visualized concentration",ylab="effect",log="x")
       points(effmag~treat, data=df, pch=NA, type="b")
       text(effmag~treat, data=df, bquote(.(round(df$treat,3))))
