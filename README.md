@@ -20,5 +20,5 @@ To run shiny app:
 
 `library(shiny)`
 
-`runGitHub("doseresponseplan", "eastandrew")`
+`runGitHub("doseresponseplanner", "eastandrew")`
 
