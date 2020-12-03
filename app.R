@@ -24,7 +24,7 @@ ui <- fluidPage(
             sliderInput("numT",label=h5("Number of Treatments:"),min = 1,max = 20,value = 5),
             numericInput("startconc", label=h5("Starting Concentration"), value=0.05),
             numericInput("endconc", label=h5("Ending Concentration"), value=0.5),
-            numericInput("changefactor", label = h5("Change Factor"), value = exp(1))
+            numericInput("changefactor", label = h5("Change Factor, only if unknown ending concentration"), value = exp(1))
         ),
         
         # Show a plot of the generated concentrations across bio effect of 100% across number of treatments
